@@ -1,4 +1,4 @@
-package com.jf.test.mytest;
+package com.demo.wj.my_project.enum_demo;
 
 /**
  * Created with IntelliJ IDEA.
