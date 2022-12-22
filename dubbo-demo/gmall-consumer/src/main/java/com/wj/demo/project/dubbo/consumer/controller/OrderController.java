@@ -1,3 +1,4 @@
+/*
 package com.wj.demo.project.dubbo.consumer.controller;
 
 import com.wj.demo.project.dubbo.api.bean.UserAddress;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.List;
 
+*/
 /**
  * Created with IntelliJ IDEA.
  *
@@ -18,7 +20,8 @@ import java.util.List;
  * @Date: 2022-12-21 14:03
  * @Description: 这里是描述
  * To change this template use File | Settings | File and Templates.
- */
+ *//*
+
 
 @Controller
 public class OrderController {
@@ -33,3 +36,4 @@ public class OrderController {
     }
 
 }
+*/

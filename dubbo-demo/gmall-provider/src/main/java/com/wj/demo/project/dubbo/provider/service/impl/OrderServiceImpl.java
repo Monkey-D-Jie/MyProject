@@ -1,12 +1,16 @@
+/*
 package com.wj.demo.project.dubbo.provider.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.wj.demo.project.dubbo.api.bean.UserAddress;
 import com.wj.demo.project.dubbo.api.service.OrderService;
 import com.wj.demo.project.dubbo.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+*/
 /**
  * Created with IntelliJ IDEA.
  *
@@ -14,8 +18,11 @@ import java.util.List;
  * @Date: 2022-12-21 14:22
  * @Description: 这里是描述
  * To change this template use File | Settings | File and Templates.
- */
+ *//*
 
+
+@Service
+@Component
 public class OrderServiceImpl implements OrderService {
     //@Reference
     @Autowired
@@ -30,3 +37,4 @@ public class OrderServiceImpl implements OrderService {
         return addressList;
     }
 }
+*/

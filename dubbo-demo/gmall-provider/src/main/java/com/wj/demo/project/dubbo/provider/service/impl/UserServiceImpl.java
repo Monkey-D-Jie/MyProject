@@ -1,5 +1,6 @@
 package com.wj.demo.project.dubbo.provider.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.wj.demo.project.dubbo.api.bean.UserAddress;
 import com.wj.demo.project.dubbo.api.service.UserService;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,8 @@ import java.util.List;
  * To change this template use File | Settings | File and Templates.
  */
 
-//@Service//使用dubbo提供的Service暴露服务
+//使用dubbo提供的Service暴露服务
+@Service
 @Component
 public class UserServiceImpl implements UserService {
 

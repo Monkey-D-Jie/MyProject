@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *         导入dubbo-starter，使用@ImportResource导入dubbo的配置文件即可
  * 2）、导入dubbo-starter，在application.properties配置属性，使用@Service【暴露服务】使用@Reference【引用服务】
  */
+//@ComponentScan(basePackages = "com.wj.demo.project.dubbo")
 @SpringBootApplication
 // 开启dubbo的自动配置
 @EnableDubboConfiguration

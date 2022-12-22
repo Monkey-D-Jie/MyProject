@@ -1,4 +1,5 @@
-package com.wj.demo.project.dubbo.api.service;
+
+/*package com.wj.demo.project.dubbo.api.service;
 
 import com.wj.demo.project.dubbo.api.bean.UserAddress;
 
@@ -13,6 +14,8 @@ import java.util.List;
  * To change this template use File | Settings | File and Templates.
  */
 
+/*
 public interface OrderService {
     List<UserAddress> initOrder(String userId);
 }
+*/

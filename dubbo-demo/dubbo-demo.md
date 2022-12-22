@@ -22,3 +22,7 @@
 
 * [Dubbo九连问，值得你细读一番](https://mp.weixin.qq.com/s/wM0Vj_YMh7881NwK-AwKSw)
 
+
+ 不加这个依赖，provider启动后，直接不报错的被Terminated了。
+问题解决参考链接来自： http://121.196.162.47/archives/z-k--d-u-b-b-o
+
