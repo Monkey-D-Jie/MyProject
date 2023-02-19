@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.demo.wj</groupId>
-    <artifactId>MyProject</artifactId>
+    <artifactId>MyReviewProject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MyProject</name>
+    <name>MyReviewProject</name>
     <description>my own spring boot project to storage basic knowlage</description>
     <packaging>pom</packaging>
 
