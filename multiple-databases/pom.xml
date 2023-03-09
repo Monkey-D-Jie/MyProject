@@ -5,28 +5,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.3</version>
+        <version>2.7.9</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
-    <groupId>com.demo.wj</groupId>
-    <artifactId>MyReviewProject</artifactId>
+    <groupId>com.wj.demo.project</groupId>
+    <artifactId>multiple-databases</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MyReviewProject</name>
-    <description>my own spring boot project to storage basic knowlage</description>
+    <name>multiple-databases</name>
+    <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
-
-
-    <modules>
-        <module>dubbo-demo</module>
-        <module>design-patterns</module>
-        <module>multiple-databases</module>
-        <module>spring-cloud-gateway</module>
-    </modules>
-
-
-
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
 
 </project>
