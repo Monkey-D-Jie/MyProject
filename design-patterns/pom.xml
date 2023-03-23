@@ -21,6 +21,7 @@
 
     <modules>
         <module>strategy-pattern</module>
+        <module>response-chain-pattern</module>
     </modules>
 
 
