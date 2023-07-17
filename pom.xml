@@ -23,6 +23,7 @@
         <module>design-patterns</module>
         <module>multiple-databases</module>
         <module>spring-cloud-gateway</module>
+        <module>java8-function-optional</module>
     </modules>
 
 
