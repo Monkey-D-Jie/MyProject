@@ -3,8 +3,8 @@
 这是一个用于实践SpringCloud-OpenFeign的工程。
 简单记录下feign的常规用法。
 
-工程实践参考帖子
-[openFeign夺命连环9问，这谁受得了？](https://juejin.cn/post/7010555899240513543#comment)
+> **[置]【参考帖子】[顶]**
+> [openFeign夺命连环9问，这谁受得了？](https://juejin.cn/post/7010555899240513543#comment)
 
 2023年7月20日09:48:12 更新
 在实践的过程中，上来就遇到了一个多模块加载失败的问题。
@@ -118,6 +118,50 @@ this version of the Java Runtime only recognizes class file versions up to 52.0
 ![consumerJSON.jpg](assets/consumer-参数传递-JSON传参.jpg)
 ![consumer.jpeg](assets/consumer-参数传递-接口路径传参.jpeg)
 ![consumerRequestParam.jpeg](assets/consumer-参数传递-@RequestParam传参.jpeg)
+
+2023年7月21日15:50:45 更新
+现在实践到了超时部分。
+默认情况下OpenFeign由于集成了Ribbon，在不显示地配置超时时间的时候，它用的是Ribbon的超时时间，这个时间很短：1s。
+如果有需要的，显示地去把超时时间设置好就行了。
+
+超时设置参照下图。
+![consumer.jpg](assets/consumer-超时设置.jpg)
+
+2023年7月21日16:33:33 更新
+超时设置好后，我们还可需要根据日志来做一些请求上的追踪。
+安排！
+openFeign是有提供到相应的日志增强配置的。
+具体的示意图如下（如果想用的，可以到源码中去看）
+![consumer.jpeg](assets/consumer-日志增强配置.jpeg)
+
+2023年7月21日16:59:44 更新
+***替换默认的HttpClient***
+默认的请求发起对象，不会用到连接池，
+是有一个请求，就维护一个长连接。
+所以我们需要将这种请求发起的场景切换到带连接池的请求对象上去。
+最终的一个示意图如下
+这里注意一个关键方法`feign.SynchronousMethodHandler#executeAndDecode()`
+![consumer.jpeg](assets/consumer-请求连接池增强配置.jpeg)
+
+2023年7月21日17:05:51 更新
+***通讯上的优化***
+简单来说，就是请求端和服务端通过指定相同的压缩方式，
+来压缩请求数据，从而提高接口交互效率。
+更具体的说明可以参见置顶帖中的解释。
+此处，我们以OpenFeign的GZIP压缩来举例。
+最终的一个实现效果如下图。
+可以参考的相关博文
+[SpringBoot开启Gzip接口报文压缩](https://www.cnblogs.com/zgq7/p/17544290.html)
+
+
+![consumer.jpeg](assets/consumer-请求压缩配置.jpeg)
+
+
+
+
+
+
+
 
 
 

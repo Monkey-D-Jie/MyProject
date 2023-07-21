@@ -20,3 +20,16 @@ management:
       exposure:
         ## yml文件中存在特殊字符，必须用单引号包含，否则启动报错
         include: '*'
+#feign的相关配置
+#feign:
+#  client:
+#    config:
+#      #default 设置的全局超时时间，指定服务名称可以设置单个服务的超时时间
+#      default:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+      ## 如果需要单独为某个服务设定超时时间，也是可以的，
+      #比如下面的例子就是为serviceC这个服务单独配置超时时间
+      #serviceC:
+        #connectTimeout: 30000
+        #readTimeout: 30000

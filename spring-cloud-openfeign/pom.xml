@@ -53,6 +53,8 @@
         <junit.version>3.8.1</junit.version>
         <jackson.version>2.11.4</jackson.version>
         <joda-time.version>2.3</joda-time.version>
+        <apache-http-client.version>4.5.13</apache-http-client.version>
+        <feign-http-client.version>10.4.0</feign-http-client.version>
     </properties>
 
     <!--
@@ -126,6 +128,18 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <!--            httpclient -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${apache-http-client.version}</version>
+            </dependency>
+            <!--            feign-httpclient-->
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-httpclient</artifactId>
+                <version>${feign-http-client.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

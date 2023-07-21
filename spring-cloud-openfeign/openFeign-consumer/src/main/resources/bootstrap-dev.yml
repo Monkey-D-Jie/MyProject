@@ -16,3 +16,38 @@ management:
       exposure:
         ## yml文件中存在特殊字符，必须用单引号包含，否则启动报错
         include: '*'
+#feign的相关配置
+feign:
+  client:
+    httpclient:
+      # 开启 Http Client
+      #Feign在默认情况下使用的是JDK原生的URLConnection发送HTTP请求，没有连接池，
+      #但是对每个地址会保持一个长连接，即利用HTTP的persistence connection。
+      #在生产环境中，通常不使用默认的http client，通常有如下两种选择：
+      #
+      #1)使用ApacheHttpClient
+      #2)使用OkHttp
+      # 此处以ApacheHttpClient为例
+      enabled: true
+    config:
+      ## default 设置的全局超时时间，指定服务名称可以设置单个服务的超时时间
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+  compression:
+    request:
+      ## 开启feign请求压缩
+      enabled: true
+      ## 压缩报文类型
+      mime-types: text/xml,application/xml,application/json
+      ## 请求体大于2048字节则开启，此处测试用，故我们把字节数设置的小一些。
+      min-request-size: 5
+    response:
+      ## 开启feign请求压缩
+      enabled: true
+      ## 使用gzip解码
+      useGzipDecoder: true
+#设置Feign接口的日志级别
+logging:
+  level:
+    com.wj.review.project.openfeign.consumer.service: debug
