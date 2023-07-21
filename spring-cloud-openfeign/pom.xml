@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--
+    ①：Springboot父工程依赖方式1
+    使用IDEA创建Maven项目时，生成的module会自动带上这个依赖信息
+    父工程的pom文件的节点用的是spring-boot-starter-parent，
+    说明他向上继承了spring-boot-starter-parent，
+    而这个依赖追溯到源头是spring-boot-dependencies，
+    这个相当于是一个依赖库，
+    定义了当前springBoot版本能用到的所有依赖以及适配的版本号
+    ————————————————
+    版权声明：本文为CSDN博主「&gt;no problem<」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+    原文链接：https://blog.csdn.net/qq_40925189/article/details/103842208
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.12.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.wj.review.project</groupId>
+    <artifactId>spring-cloud-openfeign</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--父工程的类型为pom工程-->
+    <packaging>pom</packaging>
+    <description>实践OpenFeign用的demo工程</description>
+    <!--
+        父工程聚合子模块，
+       1、能对聚合的模块统一进行操作
+       2、能自动识别子模块间的依赖关系(即该先install那个)
+     -->
+    <modules>
+        <module>openFeign-provider</module>
+        <module>openFeign-consumer</module>
+        <module>openFeign-common</module>
+    </modules>
+
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
+        <spring-cloud-dependencies.version>Hoxton.SR1</spring-cloud-dependencies.version>
+        <springc.cloud.alibaba.version>2.2.5.RELEASE</springc.cloud.alibaba.version>
+        <spring.openfeign.version>2.2.5.RELEASE</spring.openfeign.version>
+        <lombok.version>1.18.24</lombok.version>
+        <junit.version>3.8.1</junit.version>
+        <jackson.version>2.11.4</jackson.version>
+        <joda-time.version>2.3</joda-time.version>
+    </properties>
+
+    <!--
+    ②：Springboot父工程依赖方式2
+        通过这种发放时，好处是，子工程也能比较显式地声明所用的依赖
+    -->
+    <!--
+    dependencyManagement里只是声明依赖，并不自动实现引入，因此子项目需要显示的声明需要用的依赖
+    如果不在子项目中声明依赖，是不会从父项目中继承下来的；
+    只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，
+    并且version和scope都读取自父pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本
+    -->
+    <dependencyManagement>
+        <dependencies>
+            <!--        Springboot 的依赖-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--     SpringCloud的依赖   -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--             SpringCloud alibaba nacos config -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${springc.cloud.alibaba.version}</version>
+            </dependency>
+            <!--             SpringCloud alibaba nacos discovery -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${springc.cloud.alibaba.version}</version>
+            </dependency>
+            <!--            Spring Open Feign 依赖-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${spring.openfeign.version}</version>
+            </dependency>
+            <!-- Lombok            -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!--    Junit         -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!--     joda-time      -->
+             <dependency>
+                 <groupId>joda-time</groupId>
+                 <artifactId>joda-time</artifactId>
+                 <version>${joda-time.version}</version>
+             </dependency>
+            <!--       jackson     -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <!--
+                【这个插件的作用】
+                作用是打包时，对mvn package打包后的结果进行二次打包，
+                目的是将当前项目所有的依赖也打包进来(会自动的找到启动类作为main class)，
+                官方解释此时的jar包叫fat.jar
+                若不加这个插件，就只打包当前项目中的东西，依赖不会被打包进来（比如自定义的模块）。
+                注意，
+                spring-boot-maven-plugin打成的jar包可以运行，
+                但是不能被其他工程依赖。
+                所以被其他模块依赖的模块如common模块，
+                不能加这个，否则会提示找不到程序包。
+                ————————————————
+                版权声明：本文为CSDN博主「&gt;no problem<」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+                原文链接：https://blog.csdn.net/qq_40925189/article/details/103842208
+                -->
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 指定该Main-Class的启动类 -->
+					<mainClass>com.wj.review.project.openfeign.provider.ProviderApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+                            <!--可以把依赖的包都打包到生成的Jar包中-->
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

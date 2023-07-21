@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+
+#jasypt:
+#  encryptor:
+#    password: JF-123456
+#    algorithm: PBEWithMD5AndDES

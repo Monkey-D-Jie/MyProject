@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.wj.review.project</groupId>
+        <artifactId>spring-cloud-openfeign</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <!--父工程pom.xml文件相对位置-->
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>openFeign-common</artifactId>
+    <version>${parent.version}</version>
+    <name>openFeign-common</name>
+    <packaging>jar</packaging>
+    <description>openFeign工程的公共应用对象</description>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    </dependencies>
+    <!--
+    子模块中不能加入build标签中的maven插件，因为这里它的作用只是将公共的部分分离出来，被其他模块引用，
+    若加入了那个maven插件，就会导致别的模块引入该common模块失败，提示找不到程序包。
+    注意：这种主要是针对的是build插件是在各自模块本身的情况。
+    如果是采用的在父工程中即指定build插件的形式，则需要显式地添加以下声明。
+    因为，maven默认打出的jar是可执行的
+    （
+    准确来讲，应该是先打可依赖的，再打可执行的，由于两者同名，会出现后者覆盖前者的情况，
+    而可执行的jar包是不能被依赖的，所以就会出现“找不xxxx的错误”。
+    具体的可以参见：https://blog.csdn.net/guduyishuai/article/details/60968728
+    ）。
+    -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 配置的classifier表示可执行jar的名字，配置了这个之后，
+                    在插件执行repackage命令时，就不会给mvn package所打成的jar重命名了，
+                    而打好包后的第一个jar表示可以被其他项目依赖的jar，第二个jar则表示一个可执行jar。
+                    具体内容参见：https://qinyin-yq.github.io/2020/04/09/SpringBoot%20%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/
+                    -->
+                    <classifier>exec</classifier>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

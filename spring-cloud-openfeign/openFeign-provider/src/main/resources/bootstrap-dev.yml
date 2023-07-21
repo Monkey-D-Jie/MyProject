@@ -1,0 +1,22 @@
+server:
+  port: 9005
+spring:
+  application:
+    ## 指定服务名称，在nacos中的名字
+    name: openFeign-provider
+  cloud:
+    nacos:
+      discovery:
+        # nacos的服务地址，nacos-server中IP地址:端口号
+        server-addr: 127.0.0.1:8848
+#管理节点配置解读参考：https://cloud.tencent.com/developer/article/1366134
+#管理节点配置
+management:
+  endpoints:
+    web:
+      #开放全部节点
+      #如果不做节点的开放限制，那么这样就可以开放全部的对外监控的节点:
+      #这样配置后，在项目启动过程中就能看到更为细节的启动信息
+      exposure:
+        ## yml文件中存在特殊字符，必须用单引号包含，否则启动报错
+        include: '*'

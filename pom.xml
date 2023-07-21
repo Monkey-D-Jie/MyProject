@@ -24,6 +24,7 @@
         <module>multiple-databases</module>
         <module>spring-cloud-gateway</module>
         <module>java8-function-optional</module>
+        <module>spring-cloud-openfeign</module>
     </modules>
 
 
