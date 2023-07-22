@@ -47,6 +47,9 @@ feign:
       enabled: true
       ## 使用gzip解码
       useGzipDecoder: true
+  #开启熔断降级
+  sentinel:
+    enabled: true
 #设置Feign接口的日志级别
 logging:
   level:

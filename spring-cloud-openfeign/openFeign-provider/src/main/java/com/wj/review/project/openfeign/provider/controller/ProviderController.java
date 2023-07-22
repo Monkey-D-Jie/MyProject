@@ -5,6 +5,7 @@ import com.wj.review.project.openfeign.common.Order;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,6 +35,15 @@ public class ProviderController {
         System.out.println("JSON传参==========createOrder2============>>>" + order.toString());
         order.setDesc(returnTip);
         return order;
+    }
+
+    @PostMapping("/order3")
+    @ResponseBody
+    public String createOrder3(@RequestBody List<Order> orderList) {
+        //手动生成异常，触发降级
+        //System.out.println(1/0);
+        System.out.println("JSON传参==========createOrder3============>>>" + orderList.toString());
+        return orderList.toString();
     }
 
     /**

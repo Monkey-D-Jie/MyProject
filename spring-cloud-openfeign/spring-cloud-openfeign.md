@@ -154,19 +154,42 @@ openFeign是有提供到相应的日志增强配置的。
 可以参考的相关博文
 [SpringBoot开启Gzip接口报文压缩](https://www.cnblogs.com/zgq7/p/17544290.html)
 
-
 ![consumer.jpeg](assets/consumer-请求压缩配置.jpeg)
 
+2023年7月22日18:03:48 更新
 
+现在来着手开始‘熔断降级’的上手实践。
 
+同样的，整体内容上，还是参照着置顶的帖子来的。
 
+这里我们主要以Sentinel来举例。
 
+不出意外的，还是遇到了新的问题的。
 
+错误信息是如下的这种
 
+ com.alibaba.cloud.sentinel.feign.SentinelContractHolder.parseAndValidateMetadata(Ljava/lang/Class;)Ljava/util/List 
 
+后面是搁下面的帖子里，找到解决办法的，
 
+https://blog.lanweihong.com/posts/61934/
 
+https://blog.csdn.net/REX1129/article/details/112788895
 
+最终呢，是升级了父pom中的spring-cloud-dependencies.version的依赖版本为Hoxton.SR3，
+成功地解决了该问题。
 
+现在又遇到了一个新问题，引入了sentinel后，现在的接口都走的是服务降级的实现类了。
 
+2023年7月22日21:15:04 更新
 
+在将代码中的服务降级类去掉后，发现了问题所在：原来是前面的升级，它需要的feign-httpclient的版本偏低了。
+导致原来那些正常的请求都出现了异常，按照sentinel本身的处理逻辑，它们自然就被处理到了fallback指定类的
+“降级”方法中去了。
+
+将版本升级后，重新再做测试，就能成功地实现 服务降级 的演示了。
+
+从这块儿来讲，sentinel此处也有个不太优雅的地方：默认情况下，如果不对异常做处理的，
+在客户端是看不到具体的异常信息的。即我前面提到的‘服务被转发到降级方法’的那种情况。
+
+针对这种问题，一般都是会采用 全局统一处理异常的方式来做优化的。

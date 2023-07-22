@@ -5,6 +5,8 @@ import com.wj.review.project.openfeign.consumer.service.FeignProviderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,6 +34,11 @@ public class ConsumerController {
     @PostMapping("/order2")
     public Order createOrder2(@RequestBody Order order) {
         return feignProvider.createOrder2(order);
+    }
+
+    @PostMapping("/order3")
+    public String createOrder3(@RequestBody List<Order> orderList) {
+        return feignProvider.createOrder3(orderList);
     }
 
     /**

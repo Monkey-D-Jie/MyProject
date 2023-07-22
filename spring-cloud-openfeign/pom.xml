@@ -46,7 +46,7 @@
         <java.version>8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
-        <spring-cloud-dependencies.version>Hoxton.SR1</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
         <springc.cloud.alibaba.version>2.2.5.RELEASE</springc.cloud.alibaba.version>
         <spring.openfeign.version>2.2.5.RELEASE</spring.openfeign.version>
         <lombok.version>1.18.24</lombok.version>
@@ -54,7 +54,7 @@
         <jackson.version>2.11.4</jackson.version>
         <joda-time.version>2.3</joda-time.version>
         <apache-http-client.version>4.5.13</apache-http-client.version>
-        <feign-http-client.version>10.4.0</feign-http-client.version>
+        <feign-http-client.version>10.10.1</feign-http-client.version>
     </properties>
 
     <!--
@@ -97,6 +97,17 @@
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${springc.cloud.alibaba.version}</version>
             </dependency>
+             <dependency>
+                 <groupId>com.alibaba.cloud</groupId>
+                 <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                 <version>${springc.cloud.alibaba.version}</version>
+                 <exclusions>
+                     <exclusion>
+                         <groupId>com.fasterxml.jackson.dataformat</groupId>
+                         <artifactId>jackson-dataformat-xml</artifactId>
+                     </exclusion>
+                 </exclusions>
+             </dependency>
             <!--            Spring Open Feign 依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

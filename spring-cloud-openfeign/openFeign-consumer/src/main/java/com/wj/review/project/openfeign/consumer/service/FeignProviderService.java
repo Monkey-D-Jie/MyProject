@@ -1,9 +1,12 @@
 package com.wj.review.project.openfeign.consumer.service;
 
 import com.wj.review.project.openfeign.common.Order;
+import com.wj.review.project.openfeign.consumer.fallback.ConsumerFallbackService;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description: 该注解@FeignClient中的value属性指定了服务提供者在nacos注册中心的服务名。
  * To change this template use File | Settings | File and Templates.
  */
-@FeignClient(value = "openFeign-provider")
+@FeignClient(value = "openFeign-provider",fallback = ConsumerFallbackService.class)
 public interface FeignProviderService {
 
 
@@ -37,6 +40,15 @@ public interface FeignProviderService {
      */
     @PostMapping("/openfeign/provider/order2")
     Order createOrder2(@RequestBody Order order);
+
+    /**
+     * 批量创建订单
+     *
+     * @param orderList
+     * @return
+     */
+    @PostMapping("/openfeign/provider/order3")
+    String createOrder3(@RequestBody List<Order> orderList);
 
      /**
      * 传参方式③：URL中携带参数
