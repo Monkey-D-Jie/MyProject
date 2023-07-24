@@ -1,0 +1,9 @@
+2023年7月24日16:54:08 更新
+Git更新遇到的一些问题，上提代码出现如下错误
+Failed to connect to github.com port 443 after 21076 ms: Couldn't connect to server
+我的一个操作，
+先改本机ip为固定ip，并把首选DNS设置为114.114.114.114
+然后在命令行中依次执行以下命令，
+git config --global --unset http.proxy ""
+git config --global --unset http.proxy ""
+再重新push，居然就成功了。
