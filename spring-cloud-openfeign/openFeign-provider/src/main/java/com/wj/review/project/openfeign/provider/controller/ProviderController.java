@@ -41,7 +41,7 @@ public class ProviderController {
     @ResponseBody
     public String createOrder3(@RequestBody List<Order> orderList) {
         //手动生成异常，触发降级
-        //System.out.println(1/0);
+        System.out.println(1/0);
         System.out.println("JSON传参==========createOrder3============>>>" + orderList.toString());
         return orderList.toString();
     }

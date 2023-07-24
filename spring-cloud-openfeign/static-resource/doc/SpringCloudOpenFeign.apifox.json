@@ -1,0 +1,888 @@
+{
+	"apifoxProject": "1.0.0",
+	"$schema": {
+		"app": "apifox",
+		"type": "project",
+		"version": "1.2.0"
+	},
+	"info": {
+		"name": "SpringCloudOpenFeign",
+		"description": "",
+		"mockRule": {}
+	},
+	"apiCollection": [
+		{
+			"name": "根目录",
+			"auth": {},
+			"parentId": 0,
+			"serverId": "",
+			"description": "",
+			"identityPattern": {
+				"httpApi": {
+					"type": "methodAndPath",
+					"bodyType": "",
+					"fields": []
+				}
+			},
+			"preProcessors": [
+				{
+					"id": "inheritProcessors",
+					"type": "inheritProcessors",
+					"data": {}
+				}
+			],
+			"postProcessors": [
+				{
+					"id": "inheritProcessors",
+					"type": "inheritProcessors",
+					"data": {}
+				}
+			],
+			"inheritPostProcessors": {},
+			"inheritPreProcessors": {},
+			"items": [
+				{
+					"name": "consumer-order1-普通表单传参",
+					"api": {
+						"id": "97774756",
+						"method": "post",
+						"path": "/openfeign/consumer/order1",
+						"parameters": {},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243865638",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string"
+										},
+										"desc": {
+											"type": "string"
+										},
+										"orderDate": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"name",
+										"desc",
+										"orderDate"
+									]
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "{\"name\":\"order1\",\"desc\":\"表单传参==========createOrder1============>>>\",\"orderDate\":\"2023-07-21 14:18:00\"}",
+								"responseId": 243865638,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "multipart/form-data",
+							"parameters": [
+								{
+									"type": "string",
+									"name": "name",
+									"required": true,
+									"example": "order1",
+									"description": "",
+									"id": "OqVveLdDQK"
+								},
+								{
+									"type": "string",
+									"name": "desc",
+									"required": true,
+									"example": "consumer-order1-test",
+									"description": "",
+									"id": "0NMaGBFRK1"
+								},
+								{
+									"type": "string",
+									"name": "orderDate",
+									"required": true,
+									"example": "2023-07-21 14:18:00",
+									"description": "",
+									"id": "swbhqTMKs0"
+								}
+							],
+							"example": "{\r\n    \"name\": \"order1\",\r\n    \"desc\": \"consumer-order1-test\"\r\n}"
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 10,
+						"cases": [
+							{
+								"id": 99924226,
+								"type": "http",
+								"path": null,
+								"name": "成功",
+								"responseId": 243865638,
+								"parameters": {
+									"query": [],
+									"path": [],
+									"cookie": [],
+									"header": []
+								},
+								"commonParameters": {
+									"query": [],
+									"body": [],
+									"header": [],
+									"cookie": []
+								},
+								"requestBody": {
+									"parameters": [
+										{
+											"id": "l5tW3cplKj",
+											"relatedId": "OqVveLdDQK",
+											"relatedName": "name",
+											"value": "order1",
+											"enable": true,
+											"isDelete": false
+										},
+										{
+											"id": "U2yZmZoT5b",
+											"relatedId": "0NMaGBFRK1",
+											"relatedName": "desc",
+											"value": "consumer-order1-test",
+											"enable": true,
+											"isDelete": false
+										},
+										{
+											"id": "rCJCZji9yI",
+											"relatedId": "swbhqTMKs0",
+											"relatedName": "orderDate",
+											"value": "2023-07-21 14:18:00",
+											"enable": true,
+											"isDelete": false
+										}
+									],
+									"data": "{\r\n    \"name\": \"order1\",\r\n    \"desc\": \"consumer-order1-test\"\r\n}",
+									"generateMode": "normal"
+								},
+								"auth": {},
+								"advancedSettings": {
+									"isDefaultUrlEncoding": 1
+								},
+								"preProcessors": [],
+								"postProcessors": [],
+								"inheritPostProcessors": {},
+								"inheritPreProcessors": {}
+							}
+						],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "consumer-order3-服务降级测试传参",
+					"api": {
+						"id": "97774779",
+						"method": "post",
+						"path": "/openfeign/consumer/order3",
+						"parameters": {
+							"header": [
+								{
+									"name": "Content-Type",
+									"required": true,
+									"example": "application/json",
+									"description": "",
+									"id": "1Tm6yTy4ma",
+									"type": "string"
+								}
+							]
+						},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243865666",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {}
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "批量下单服务降级=============",
+								"responseId": 243865666,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "text/plain",
+							"parameters": [
+								{
+									"type": "string",
+									"name": "name",
+									"required": true,
+									"example": "order1",
+									"description": "",
+									"id": "3OuCTPFB3w"
+								},
+								{
+									"type": "string",
+									"name": "desc",
+									"required": true,
+									"example": "consumer-order1-test",
+									"description": "",
+									"id": "yBW28JGjbP"
+								},
+								{
+									"type": "string",
+									"name": "orderDate",
+									"required": true,
+									"example": "2023-07-21 14:18:00",
+									"description": "",
+									"id": "URvhnwwmU7"
+								}
+							],
+							"example": "[\r\n    {\r\n    \"name\": \"order3\",\r\n    \"desc\": \"consumer-order1-test\",\r\n    \"orderDate\":\"2023-07-22\"\r\n    },\r\n    {\r\n    \"name\": \"order3-1\",\r\n    \"desc\": \"consumer-order3-1-test\",\r\n    \"orderDate\":\"2023-07-22\"\r\n    }\r\n]\r\n"
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 20,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "consumer-order1-JSON传参",
+					"api": {
+						"id": "97775003",
+						"method": "post",
+						"path": "/openfeign/consumer/order2",
+						"parameters": {},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243866714",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string"
+										},
+										"desc": {
+											"type": "string"
+										},
+										"orderDate": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"name",
+										"desc",
+										"orderDate"
+									]
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "{\"name\":\"order2\",\"desc\":\"JSON传参==========createOrder2============>>>\",\"orderDate\":\"2023-07-21 14:32\"}",
+								"responseId": 243866714,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "application/json",
+							"parameters": [
+								{
+									"type": "string",
+									"name": "name",
+									"required": true,
+									"example": "order1",
+									"description": "",
+									"id": "EELHBHNWzi"
+								},
+								{
+									"type": "string",
+									"name": "desc",
+									"required": true,
+									"example": "consumer-order1-test",
+									"description": "",
+									"id": "JDiakqTnqk"
+								},
+								{
+									"type": "string",
+									"name": "orderDate",
+									"required": true,
+									"example": "2023-07-21 14:18:00",
+									"description": "",
+									"id": "BjICj6mQNP"
+								}
+							],
+							"jsonSchema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"desc": {
+										"type": "string"
+									},
+									"orderDate": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"name",
+									"desc",
+									"orderDate"
+								]
+							},
+							"example": "{\r\n    \"name\": \"order2\",\r\n    \"desc\": \"consumer-order2-JSON传参\",\r\n    \"orderDate\":\"2023-07-21 14:32\"\r\n}"
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 30,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "consumer-PathVariable传参",
+					"api": {
+						"id": "97775020",
+						"method": "get",
+						"path": "/openfeign/consumer/pathParam/666666",
+						"parameters": {},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243866737",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {}
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "@PathVariable传参(接口占位符)==========pathParam============>>>666666accept one msg id=666666",
+								"responseId": 243866737,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "none",
+							"parameters": [
+								{
+									"type": "string",
+									"name": "name",
+									"required": true,
+									"example": "order1",
+									"description": "",
+									"id": "GlfFS0kZeJ"
+								},
+								{
+									"type": "string",
+									"name": "desc",
+									"required": true,
+									"example": "consumer-order1-test",
+									"description": "",
+									"id": "etRE90WnZ4"
+								},
+								{
+									"type": "string",
+									"name": "orderDate",
+									"required": true,
+									"example": "2023-07-21 14:18:00",
+									"description": "",
+									"id": "cV5AVh389P"
+								}
+							],
+							"example": "{\r\n    \"name\": \"order2\",\r\n    \"desc\": \"consumer-order2-JSON传参\",\r\n    \"orderDate\":\"2023-07-21 14:32\"\r\n}"
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 40,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "consumer-RequestParam传参",
+					"api": {
+						"id": "97775455",
+						"method": "post",
+						"path": "/openfeign/consumer/requestParam",
+						"parameters": {
+							"query": [
+								{
+									"name": "id",
+									"required": true,
+									"example": "666666",
+									"description": "",
+									"id": "Q14nUFmnvF",
+									"type": "string"
+								},
+								{
+									"name": "name",
+									"required": true,
+									"example": "RequestParam传参测试",
+									"description": "",
+									"id": "OmdGAfmxcs",
+									"type": "string"
+								}
+							]
+						},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243867307",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {}
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "@RequestParam(接口占位符)==========requestParam============>>>666666---RequestParam传参测试accept on msg id=666666，name=RequestParam传参测试",
+								"responseId": 243867307,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "none",
+							"parameters": [
+								{
+									"type": "string",
+									"name": "name",
+									"required": true,
+									"example": "order1",
+									"description": "",
+									"id": "ELzwnKE57t"
+								},
+								{
+									"type": "string",
+									"name": "desc",
+									"required": true,
+									"example": "consumer-order1-test",
+									"description": "",
+									"id": "O4gIrhlSQN"
+								},
+								{
+									"type": "string",
+									"name": "orderDate",
+									"required": true,
+									"example": "2023-07-21 14:18:00",
+									"description": "",
+									"id": "lBymB3L9jy"
+								}
+							],
+							"example": "{\r\n    \"name\": \"order2\",\r\n    \"desc\": \"consumer-order2-JSON传参\",\r\n    \"orderDate\":\"2023-07-21 14:32\"\r\n}"
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 50,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "sentinel-hello",
+					"api": {
+						"id": "97775555",
+						"method": "get",
+						"path": "/consumer/sentinel/hello",
+						"parameters": {},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243867429",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {}
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "hi, this is service-sentinel!",
+								"responseId": 243867429,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "none",
+							"parameters": []
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 60,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "sentinel-limit",
+					"api": {
+						"id": "97775624",
+						"method": "get",
+						"path": "/consumer/sentinel/limit",
+						"parameters": {},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243867636",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {}
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "hi, this is service-sentinel-limit test!",
+								"responseId": 243867636,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "none",
+							"parameters": []
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 70,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "sentinel-degrade",
+					"api": {
+						"id": "97775935",
+						"method": "get",
+						"path": "/consumer/sentinel/degrade",
+						"parameters": {},
+						"auth": {},
+						"commonParameters": {},
+						"responses": [
+							{
+								"id": "243867979",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {}
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "hi, this is service-sentinel-degrade test!",
+								"responseId": 243867979,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "none",
+							"parameters": []
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 80,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				},
+				{
+					"name": "sentinel-fusing",
+					"api": {
+						"id": "97775994",
+						"method": "get",
+						"path": "/consumer/sentinel/fusing",
+						"parameters": {},
+						"auth": {},
+						"commonParameters": {
+							"query": [],
+							"body": [],
+							"cookie": [],
+							"header": []
+						},
+						"responses": [
+							{
+								"id": "243868167",
+								"name": "成功",
+								"code": 200,
+								"contentType": "json",
+								"jsonSchema": {
+									"type": "object",
+									"properties": {}
+								}
+							}
+						],
+						"responseExamples": [
+							{
+								"name": "成功示例",
+								"data": "hi, this is service-sentinel-fusing test!",
+								"responseId": 243868167,
+								"ordering": 1
+							}
+						],
+						"requestBody": {
+							"type": "none",
+							"parameters": []
+						},
+						"description": "",
+						"tags": [],
+						"status": "developing",
+						"serverId": "",
+						"operationId": "",
+						"sourceUrl": "",
+						"ordering": 90,
+						"cases": [],
+						"mocks": [],
+						"customApiFields": "{}",
+						"advancedSettings": {},
+						"mockScript": {},
+						"codeSamples": [],
+						"commonResponseStatus": {},
+						"responseChildren": [],
+						"preProcessors": [],
+						"postProcessors": [],
+						"inheritPostProcessors": {},
+						"inheritPreProcessors": {}
+					}
+				}
+			]
+		}
+	],
+	"socketCollection": [],
+	"docCollection": [],
+	"schemaCollection": [],
+	"responseCollection": [],
+	"apiTestCaseCollection": [
+		{
+			"name": "根目录",
+			"children": [],
+			"items": [
+				{
+					"steps": [],
+					"id": 2822024,
+					"name": "我的测试",
+					"ordering": 10,
+					"description": "",
+					"syncContent": [],
+					"preProcessors": [],
+					"postProcessors": [],
+					"children": [],
+					"apiTestDataSets": []
+				}
+			]
+		}
+	],
+	"testCaseReferences": [],
+	"environments": [
+		{
+			"name": "开发环境",
+			"parameters": {
+				"cookie": [],
+				"query": [],
+				"header": [],
+				"body": []
+			},
+			"variables": [],
+			"type": "normal",
+			"visibility": "protected",
+			"ordering": 0,
+			"tags": [
+				{
+					"name": "",
+					"color": "#9373EE"
+				}
+			],
+			"id": "12931861",
+			"baseUrl": "http://localhost:9006",
+			"baseUrls": {
+				"default": "http://localhost:9006"
+			}
+		}
+	],
+	"commonScripts": [],
+	"databaseConnections": [],
+	"globalVariables": [],
+	"commonParameters": null,
+	"projectSetting": {
+		"id": "2468997",
+		"auth": {},
+		"servers": [
+			{
+				"id": "default",
+				"name": "默认服务"
+			}
+		],
+		"gateway": [],
+		"language": "zh-CN",
+		"apiStatuses": [
+			"developing",
+			"testing",
+			"released",
+			"deprecated"
+		],
+		"mockSettings": {},
+		"preProcessors": [],
+		"postProcessors": [],
+		"advancedSettings": {},
+		"initialDisabledMockIds": [],
+		"cloudMock": {
+			"security": "free",
+			"enable": false,
+			"tokenKey": "apifoxToken"
+		}
+	}
+}

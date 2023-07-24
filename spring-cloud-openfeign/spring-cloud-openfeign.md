@@ -158,6 +158,8 @@ openFeign是有提供到相应的日志增强配置的。
 
 2023年7月22日18:03:48 更新
 
+***熔断降级***
+
 现在来着手开始‘熔断降级’的上手实践。
 
 同样的，整体内容上，还是参照着置顶的帖子来的。
@@ -168,7 +170,7 @@ openFeign是有提供到相应的日志增强配置的。
 
 错误信息是如下的这种
 
- com.alibaba.cloud.sentinel.feign.SentinelContractHolder.parseAndValidateMetadata(Ljava/lang/Class;)Ljava/util/List 
+com.alibaba.cloud.sentinel.feign.SentinelContractHolder.parseAndValidateMetadata(Ljava/lang/Class;)Ljava/util/List
 
 后面是搁下面的帖子里，找到解决办法的，
 
@@ -184,12 +186,36 @@ https://blog.csdn.net/REX1129/article/details/112788895
 2023年7月22日21:15:04 更新
 
 在将代码中的服务降级类去掉后，发现了问题所在：原来是前面的升级，它需要的feign-httpclient的版本偏低了。
-导致原来那些正常的请求都出现了异常，按照sentinel本身的处理逻辑，它们自然就被处理到了fallback指定类的
-“降级”方法中去了。
+导致原来那些正常的请求都出现了异常，按照sentinel本身的处理逻辑，它们自然就被处理到了fallback指定类的“降级”方法中去了。
 
-将版本升级后，重新再做测试，就能成功地实现 服务降级 的演示了。
+将feign-httpclient版本升级为`10.10.1`后，重新再做测试，就能成功地实现 服务降级 的演示了。
 
 从这块儿来讲，sentinel此处也有个不太优雅的地方：默认情况下，如果不对异常做处理的，
 在客户端是看不到具体的异常信息的。即我前面提到的‘服务被转发到降级方法’的那种情况。
+![consumer.jpeg](assets/consumer-服务降级.jpeg)
+但是在客户端是看不到异常的具体情况的，
+![consumer.jpeg](assets/consumer-服务降级-客户端控制台信息.jpeg)
 
 针对这种问题，一般都是会采用 全局统一处理异常的方式来做优化的。
+
+2023年7月24日11:15:38 更新
+
+***全局异常处理***
+
+现在我们来引入全局异常处理，参考帖子是下面这个。
+[帖子1-自定义Sentinel全局处理异常](https://juejin.cn/post/7152692717284229133)
+[帖子2-# Sentinel之自定义错误处理](https://juejin.cn/post/7136107044834115615)
+两个帖子在全局异常的处理上有所差异，但达到的效果应该是一样的。
+笔者这里只有按照帖子2的方式才生效了。按帖子1的方式未能生效。
+暂时还不知道是什么原因。
+这块儿暂时就先不折腾了，先到此为止吧，后面如果有需要深入研究的地方。
+再来细究。
+
+
+
+
+
+
+
+
+

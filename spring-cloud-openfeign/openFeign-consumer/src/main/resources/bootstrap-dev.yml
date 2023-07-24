@@ -9,7 +9,11 @@ spring:
       discovery:
         # nacos的服务地址，nacos-server中IP地址:端口号
         server-addr: 127.0.0.1:8848
-
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      filter:
+        url-patterns: /**
 management:
   endpoints:
     web:
