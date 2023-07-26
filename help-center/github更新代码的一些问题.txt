@@ -4,6 +4,10 @@ Failed to connect to github.com port 443 after 21076 ms: Couldn't connect to ser
 我的一个操作，
 先改本机ip为固定ip，并把首选DNS设置为114.114.114.114
 然后在命令行中依次执行以下命令，
-git config --global --unset http.proxy ""
+git config --global http.proxy ""
 git config --global --unset http.proxy ""
 再重新push，居然就成功了。
+可以参考的帖子些
+帖子1：https://blog.csdn.net/Hodors/article/details/103226958
+贴子2：https://simplestark.com/archives/%E7%BB%8F%E9%AA%8C%E5%AE%9D%E5%AE%9Dfailedtoconnecttogithubcomport443operationtimedout
+贴子3：https://www.cnblogs.com/elaine-a/p/17309379.html
