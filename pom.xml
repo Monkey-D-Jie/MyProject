@@ -25,6 +25,7 @@
         <module>spring-cloud-gateway</module>
         <module>java8-function-optional</module>
         <module>spring-cloud-openfeign</module>
+        <module>spring-cloud-nacos</module>
     </modules>
 
 

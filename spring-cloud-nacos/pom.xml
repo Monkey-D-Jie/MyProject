@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--  模块声明  -->
+    <groupId>com.wj.review.project</groupId>
+    <artifactId>spring-cloud-nacos</artifactId>
+    <name>spring-cloud-nacos</name>
+    <version>0.0.1-SNAPSHOT</version>
+    <!--父工程的类型为pom工程-->
+    <packaging>pom</packaging>
+    <description>实践nacos用的demo工程</description>
+
+
+     <modules>
+         <module>nacos-provider</module>
+         <module>nacos-consumer</module>
+         <module>nacos-config</module>
+     </modules>
+
+
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>8</java.version>
+        <!--   版本依赖管理     -->
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+        <spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
+        <springc.cloud.alibaba.version>2.2.1.RELEASE</springc.cloud.alibaba.version>
+        <junit.version>4.13.1</junit.version>
+         <lombok.version>1.18.24</lombok.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!--        Springboot 的依赖-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--     SpringCloud的依赖   -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--             SpringCloud alibaba 依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${springc.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--        junit 依赖    -->
+             <dependency>
+                 <groupId>junit</groupId>
+                 <artifactId>junit</artifactId>
+                 <version>${junit.version}</version>
+                 <scope>test</scope>
+             </dependency>
+            <!-- Lombok            -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+      <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <!--
+                【这个插件的作用】
+                作用是打包时，对mvn package打包后的结果进行二次打包，
+                目的是将当前项目所有的依赖也打包进来(会自动的找到启动类作为main class)，
+                官方解释此时的jar包叫fat.jar
+                若不加这个插件，就只打包当前项目中的东西，依赖不会被打包进来（比如自定义的模块）。
+                注意，
+                spring-boot-maven-plugin打成的jar包可以运行，
+                但是不能被其他工程依赖。
+                所以被其他模块依赖的模块如common模块，
+                不能加这个，否则会提示找不到程序包。
+                ————————————————
+                版权声明：本文为CSDN博主「&gt;no problem<」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+                原文链接：https://blog.csdn.net/qq_40925189/article/details/103842208
+                -->
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.1</version>
+                <configuration>
+                <!--       本工程中无需主类             -->
+                    <!-- 指定该Main-Class的启动类 -->
+<!--					<mainClass>com.wj.review.project.openfeign.provider.ProviderApplication</mainClass>-->
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+                            <!--可以把依赖的包都打包到生成的Jar包中-->
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

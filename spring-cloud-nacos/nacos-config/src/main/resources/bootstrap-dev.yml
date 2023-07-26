@@ -1,0 +1,51 @@
+server:
+  port: 9003
+spring:
+  application:
+    #prefix：前缀，默认是spring.application.name的值，也可以通过配置项 spring.cloud.nacos.config.prefix来配置。
+    name: nacos-config
+    ## 当前环境，这个和dataId有关-> ${prefix}-${spring.profiles.active}.${file-extension}
+#  profiles:
+#    active: dev
+  cloud:
+    nacos:
+      config:
+        ## nacos的地址，作为配置中心
+        server-addr: 127.0.0.1:8848
+        ## 配置内容的数据格式，目前只支持 properties 和 yaml 类型，这个和dataId有关-> ${prefix}-${spring.profiles.active}.${file-extension}
+        # 目前只支持 properties 和 yaml 类型。
+        file-extension: yaml
+        #此处的命名空间对应的nacos上的id，而不是名称。为了方便起见，可以考虑把id和命名空间写成同一个名称，这样就可以直接以名字命名了。
+        namespace: dev
+        #group: ORDER_GROUP
+        ## 共享配置
+        #List集合，可以配置多个(不管是下面的哪一种”共享配置“方式，最好都把group信息写上。
+        #不然会报一些找不到配置文件中相关配置项的错误)
+        #另一方面：当核心配置文件nacos-config.yaml中和shared-configs指定的配置文件下中有相同内容时，
+        #将会以核心配置文件中的为准。
+        group: ORDER_GROUP
+        #第一种配置方式，
+        shared-configs:
+          ## dataId：配置文件的dataId，必须带有后缀
+            - dataId: order-group-share-config1.yaml
+              #refresh：指定是否能够动态刷新，默认是false
+              refresh: true
+              group: ORDER_GROUP
+            - dataId: share-config2.yaml
+              refresh: true
+              group: SHARE_GROUP
+        #第二种配置方式，
+#        extension-configs:
+#          - data-id: share-config1.yaml
+#            group: SHARE_GROUP
+#            refresh: true
+#          - data-id: share-config2.yaml
+#            group: SHARE_GROUP
+#            refresh: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        ## yml文件中存在特殊字符，必须用单引号包含，否则启动报错
+        include: '*'
