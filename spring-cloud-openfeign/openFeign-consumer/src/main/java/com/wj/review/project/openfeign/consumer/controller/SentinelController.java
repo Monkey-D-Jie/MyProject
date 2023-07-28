@@ -17,32 +17,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/consumer/sentinel")
 public class SentinelController {
-    
+
     @GetMapping("/hello")
-  public String hello() {
-    return "hi, this is service-sentinel!";
-   }
+    public String hello() {
+        return "hi, this is service-sentinel!";
+    }
 
-  @PostMapping("/test")
-  public String test() {
-    return "hi, this is service-sentinel[POST]!";
-   }
+    @PostMapping("/test")
+    public String test() {
+        return "hi, this is service-sentinel[POST]!";
+    }
 
-  //测试流控规则
-  @GetMapping("/limit")
-  public String limit() { //路由id限流、自定义异常处理
-    return "hi, this is service-sentinel-limit test!";
-   }
+    //测试流控规则
+    @GetMapping("/limit")
+    public String limit() { //路由id限流、自定义异常处理
+        return "hi, this is service-sentinel-limit test!";
+    }
 
-  //测试降级规则
-  @GetMapping("/degrade")
-  public String degrade(){
-    return "hi, this is service-sentinel-degrade test!";
-   }
+    //测试降级规则
+    @GetMapping("/degrade")
+    public String degrade() {
+        return "hi, this is service-sentinel-degrade test!";
+    }
 
-  //熔断测试
-  @GetMapping("/fusing")
-  public String fusing(){
-    return "hi, this is service-sentinel-fusing test!";
-   }
+    //熔断测试
+    @GetMapping("/fusing")
+    public String fusing() {
+        return "hi, this is service-sentinel-fusing test!";
+    }
 }

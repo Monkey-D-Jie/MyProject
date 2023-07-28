@@ -259,7 +259,26 @@ https://blog.csdn.net/REX1129/article/details/112788895
 
 这块儿暂时就先不折腾了，先到此为止吧，后面如果有需要深入研究的地方.再来细究。
 
+>2023年7月28日14:12:54 更新
 
+接下来，笔者继续在工程`openFeign-consumer`工程的基础上来实践sentinel的相关操作。
+
+原帖如下
+
+[Sentinel的夺命连环问？？？](https://mp.weixin.qq.com/s?__biz=MzU3MDAzNDg1MA==&mid=2247498039&idx=1&sn=3a3caee655ff015b46249bd51aa4dc79&chksm=fcf726facb80afecea4d48faf94a9940b80ba21b325510cf4be6f7c7bce2f3c73266857f65d1&cur_album_id=2042874937312346114&scene=190#rd)
+
+工程实践将从`8、降级规则如何配置？`开始，来逐个做实验，
+
+>2023年7月28日16:13:59 更新
+
+就着上面的帖子来做了实验后，发现sentinel按需实践的属性还挺强的。
+最好还是结合自己使用场景，然后看看怎么来设定容错规则以及调整代码，
+是最好的使用方法。
+
+这里就不再做过多的操作实践了，有要用的时候，
+结合上面的帖子和自己的笔记看看就好了。
+
+[SpringCloudAlibaba-05-Sentinel应用实践](http://note.youdao.com/noteshare?id=0c2622dd998df5eaf2b713e5e2616fc9&sub=2ECFF2E252754D6B879DBB286FBEDC7F)
 
 
 

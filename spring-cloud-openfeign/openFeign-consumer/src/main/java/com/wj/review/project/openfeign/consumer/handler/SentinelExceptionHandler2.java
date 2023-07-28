@@ -23,38 +23,40 @@ import java.io.PrintWriter;
  * To change this template use File | Settings | File and Templates.
  */
 @Configuration
-public class SentinelExceptionHandler2  implements BlockExceptionHandler {
-    
-    @Override
-  public void handle(HttpServletRequest request, HttpServletResponse response, BlockException e) throws Exception {
-        if (e instanceof FlowException) {
-            //流控规则异常
-            response.setStatus(445);
+public class SentinelExceptionHandler2 implements BlockExceptionHandler {
 
-            PrintWriter out = response.getWriter();
-            out.print("sentinel======global exception handler");
-            out.flush();
-            out.close();
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response, BlockException e) throws Exception {
+        String errorMsg = "";
+        if (e instanceof FlowException) {
+            errorMsg = "sentinel======global exception handler==>" + e;
         }
         if (e instanceof AuthorityException) {
             //授权规则异常
-            System.out.println("i am flow AuthorityException");
+            errorMsg = "i am flow AuthorityException";
         }
 
         if (e instanceof DegradeException) {
             // 熔断规则
-            System.out.println("i am flow DegradeException");
+            errorMsg = "i am flow DegradeException";
         }
 
 
         if (e instanceof ParamFlowException) {
             // 热点规则
-            System.out.println("i am flow ParamFlowException");
+            errorMsg = "i am flow ParamFlowException";
         }
 
         if (e instanceof SystemBlockException) {
             // 系统规则
-            System.out.println("i am flow SystemBlockException");
+            errorMsg = "i am flow SystemBlockException";
         }
+        System.out.println(errorMsg+"======"+e);
+        //流控规则异常
+        response.setStatus(500);
+        PrintWriter out = response.getWriter();
+        out.print(errorMsg);
+        out.flush();
+        out.close();
     }
 }
