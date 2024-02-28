@@ -3,9 +3,13 @@
 ***2024年2月28日09:34:29更新***
 
 > 参考链接
+
 > [Spring事务面试考点](https://www.cnblogs.com/lixinjie/p/spring-tx-key-point-in-a-interview.html)
+
 > [Spring事务的配置、参数详情及其原理介绍(Transactional) - kosamino - 博客园](https://www.cnblogs.com/jing99/p/11495252.html)
+
 > [Spring 事务详解 | JavaGuide](https://javaguide.cn/system-design/framework/spring/spring-transaction.html#%E5%8F%82%E8%80%83)
+
 > [太难了~面试官让我结合案例讲讲自己对Spring事务传播行为的理解](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486668&idx=2&sn=0381e8c836442f46bdc5367170234abb&chksm=cea24307f9d5ca11c96943b3ccfa1fc70dc97dd87d9c540388581f8fe6d805ff548dff5f6b5b&token=1776990505&lang=zh_CN#rd)
 
 ### 1.Spring和事务的关系
@@ -206,7 +210,9 @@ public void aMethod {
 REQUIRED，SUPPORTS，MANDATORY，REQUIRES_NEW，NOT_SUPPORTED，NEVER，NESTED
 
 > 重点参考链接
+
 > [Spring 事务详解 | JavaGuide](https://javaguide.cn/system-design/framework/spring/spring-transaction.html#%E4%BA%8B%E5%8A%A1%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3)
+
 > [太难了~面试官让我结合案例讲讲自己对Spring事务传播行为的理解。](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486668&idx=2&sn=0381e8c836442f46bdc5367170234abb&chksm=cea24307f9d5ca11c96943b3ccfa1fc70dc97dd87d9c540388581f8fe6d805ff548dff5f6b5b&token=1776990505&lang=zh_CN#rd)
 
 ##### 8.2.1 Propagation.REQUIRED
