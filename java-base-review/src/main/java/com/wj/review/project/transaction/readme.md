@@ -30,8 +30,10 @@
 ### 3.Spring事务的注解配置方式
 
 * 在Spring中设置事务的常规方法
+
   ①：把一个DataSource（如DruidDataSource）作为一个@Bean注册到Spring容器中，配置好事务性资源。
   ![事务性资源对象](assets/通过Bean指定一个事务性资源对象.png?t=1709098355842)
+
   ②：把一个@EnableTransactionManagement注解放到一个@Configuration类上，配置好事务管理器，并启用事务管理。
   
   **注意：需要确保你是成功地启动了注解驱动的事务管理才行。**
