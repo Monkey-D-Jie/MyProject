@@ -233,6 +233,20 @@ REQUIRED，SUPPORTS，MANDATORY，REQUIRES_NEW，NOT_SUPPORTED，NEVER，NESTED
 * 在外部方法开启事务的情况下，在内部开启一个新的事务，作为嵌套事务存在。
 * 如果外部方法无事务，则单独开启一个事务，与 `PROPAGATION_REQUIRED` 类似。
 
+```
+Propagation.NESTED的一个关键点是它允许你在一个事务内部嵌套另一个事务，
+
+并且内外事务可以独立控制回滚。
+
+这在某些场景中是非常有用的，比如你需要在一个事务内部执行另一个可能失败的操作，
+
+但你不想让这个失败影响到外层事务的执行。
+
+然而，需要注意的是，Propagation.NESTED并不是所有的数据库和事务管理器都支持，
+
+因此在使用之前需要确保你的环境支持这种传播特性。
+```
+
 ##### 8.2.4 Propagation.MANDATORY(用的比较少)
 
 如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。（mandatory：强制性）
