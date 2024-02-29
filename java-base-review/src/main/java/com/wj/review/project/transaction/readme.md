@@ -221,7 +221,6 @@ REQUIRED，SUPPORTS，MANDATORY，REQUIRES_NEW，NOT_SUPPORTED，NEVER，NESTED
 
 * 如果外部方法没有开启事务的话，`Propagation.REQUIRED`修饰的内部方法会新开启自己的事务，且开启的事务相互独立，互不干扰。
 * 如果外部方法开启事务并且被`Propagation.REQUIRED`的话，所有`Propagation.REQUIRED`修饰的内部方法和外部方法均属于同一事务 ，只要一个方法回滚，整个事务均回滚。
- 
 
 ##### 8.2.2 Propagation.REQUIRES_NEW
 
@@ -258,10 +257,17 @@ REQUIRED，SUPPORTS，MANDATORY，REQUIRES_NEW，NOT_SUPPORTED，NEVER，NESTED
 
 * 脏读-方便记忆：`写读`
   现象：第一个事务修改了一行数据，第二个事务是能读到事务1修改的数据的。但当第一个事务回滚后，第二个事务仍能读取到被回滚的那一条无效数据——即修改的数据本不该被读出来（因为事务还没有提交），但却读出来了。
+  ![1.png](assets/脏读1.png?t=1709176973299)
+  ![2.png](assets/脏读2.png?t=1709176985033)
 * 不可重复读-方便记忆：`读写读`
   现象：事务1读取了数据r，事务2修改了数据r，事务1再重新读取数据r，得到的结果是修改后的r——即本不该读出修改的数据r（同样的，因为事务还没有提交），但却读出来了。
+  ![1.png](assets/不可重复读1.png?t=1709177025365)
+  ![2.png](assets/不可重复读2.png?t=1709177033474)
 * 幻读-方便记忆：`where insert where`
   现象：事务1通过where查询得到了符合条件的数据行Rs，事务2插入了一行数据，且正好满足where条件。事务1再以同样的where条件读取，能把事务2插入的数据一并读取出来——即本不该被读出来的数据行，却被读出来了。
+  ![1.png](assets/幻读1.png?t=1709177045320)
+  ![2.png](assets/幻读2.png?t=1709177053224)
+  
 
 ##### 8.3.2 不同事务隔离级别的作用
 
@@ -269,7 +275,7 @@ REQUIRED，SUPPORTS，MANDATORY，REQUIRES_NEW，NOT_SUPPORTED，NEVER，NESTED
 
 * **TransactionDefinition.ISOLATION_DEFAULT**
   采用后端数据库默认的隔离级别。
-
+  
   1)MySQL:REPEATABLE_READ
   
   2)Oracle:READ_COMMITTED
@@ -281,5 +287,4 @@ REQUIRED，SUPPORTS，MANDATORY，REQUIRES_NEW，NOT_SUPPORTED，NEVER，NESTED
   对同一字段多次的读取结果都是一致的，除非数据所在事务对其做出更改。可以避免脏读和不可重复读，但幻读仍可能发生。
 * **TransactionDefinition.ISOLATION_SERIALIZABLE**
   最高的隔离级别。所有的事务依次按序执行，事务之间不会产生干扰。该级别可以防止脏读、幻读、不可重复读。但严重影响程序的性能，故通常情况下也不会用到该级别。
-  
 
