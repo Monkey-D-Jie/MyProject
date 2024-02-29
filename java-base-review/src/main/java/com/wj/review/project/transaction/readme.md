@@ -252,17 +252,33 @@ REQUIRED，SUPPORTS，MANDATORY，REQUIRES_NEW，NOT_SUPPORTED，NEVER，NESTED
 
 #### 8.3 事务的隔离级别
 
+> 重点参考链接：[MySQL事务隔离级别详解 | JavaGuide](https://javaguide.cn/database/mysql/transaction-isolation-level.html)
+
 ##### 8.3.1 常见的几种错读方式
 
-* 脏读
-* 幻读
-* 不可重复读
+* 脏读-方便记忆：`写读`
+  现象：第一个事务修改了一行数据，第二个事务是能读到事务1修改的数据的。但当第一个事务回滚后，第二个事务仍能读取到被回滚的那一条无效数据——即修改的数据本不该被读出来（因为事务还没有提交），但却读出来了。
+* 不可重复读-方便记忆：`读写读`
+  现象：事务1读取了数据r，事务2修改了数据r，事务1再重新读取数据r，得到的结果是修改后的r——即本不该读出修改的数据r（同样的，因为事务还没有提交），但却读出来了。
+* 幻读-方便记忆：`where insert where`
+  现象：事务1通过where查询得到了符合条件的数据行Rs，事务2插入了一行数据，且正好满足where条件。事务1再以同样的where条件读取，能把事务2插入的数据一并读取出来——即本不该被读出来的数据行，却被读出来了。
 
 ##### 8.3.2 不同事务隔离级别的作用
 
-* DEFAULT
-* READ_UNCOMMITTED
-* READ_COMMITTED
-* REPEATABLE_READ
-* SERIALIZABLE
+![事务隔离级别](assets/事务隔离级别01.png?t=1709172259677)
+
+* **TransactionDefinition.ISOLATION_DEFAULT**
+  采用后端数据库默认的隔离级别。
+  1)MySQL:REPEATABLE_READ
+  
+  2)Oracle:READ_COMMITTED
+* **TransactionDefinition.ISOLATION_READ_UNCOMMITTED**
+  它是最低的隔离级别，用的也比较少。因为它允许读取尚未提交的数据变更。可能会导致脏读，幻读或不可重复读。
+* **TransactionDefinition.ISOLATION_READ_COMMITTED**
+  允许读取并发事务已经提交的数据。 可以阻止脏读，但幻读和不可重复读仍有可能会发生。
+* **TransactionDefinition.ISOLATION_REPEATABLE_READ**
+  对同一字段多次的读取结果都是一致的，除非数据所在事务对其做出更改。可以避免脏读和不可重复读，但幻读仍可能发生。
+* **TransactionDefinition.ISOLATION_SERIALIZABLE**
+  最高的隔离级别。所有的事务依次按序执行，事务之间不会产生干扰。该级别可以防止脏读、幻读、不可重复读。但严重影响程序的性能，故通常情况下也不会用到该级别。
+  
 
