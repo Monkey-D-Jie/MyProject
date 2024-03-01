@@ -11,13 +11,13 @@ https://www.bilibili.com/video/BV18d4y1m75K/?spm_id_from=333.788&vd_source=23114
 
 我们先来看看Java中的几种“变型”
 
-![变型分类](assets/变型分类.png?t=1708565126425)
+![变型分类](../generics/variant/assets/变型分类.png?t=1708565126425)
 
 那这几种变型分别代表什么意思呢？
 
 我们以经典的Animal和Dog类作为样例来说明。
 
-![.png](assets/变型分类-示例说明.png)
+![.png](../generics/variant/assets/变型分类-示例说明.png)
 
 视频中关于这几种变型的专业类说法叫：**类型构造器如何影响父子类型之间的关系？**
 
@@ -32,7 +32,7 @@ https://www.bilibili.com/video/BV18d4y1m75K/?spm_id_from=333.788&vd_source=23114
   就是字面意思，不做改变。
   
   结合上述的说明，我们预期下的集合赋值逻辑关系是这样的。
-  ![变型分类-预期下的对象赋值关系](assets/变型分类-预期下的对象赋值关系.png)
+  ![变型分类-预期下的对象赋值关系](../generics/variant/assets/变型分类-预期下的对象赋值关系.png)
 
 但是在Java集合中，默认是不支持协变的。
 
@@ -42,23 +42,23 @@ https://www.bilibili.com/video/BV18d4y1m75K/?spm_id_from=333.788&vd_source=23114
 
 如下面的两个图所示。
 
-![Java默认不支持协变](assets/变型分类-Java默认不支持协变.png)
+![Java默认不支持协变](../generics/variant/assets/变型分类-Java默认不支持协变.png)
 
-![Java默认不支持协变-原因](assets/变型分类-Java默认不支持协变-原因.png)
+![Java默认不支持协变-原因](../generics/variant/assets/变型分类-Java默认不支持协变-原因.png)
 
 **需要注意的是Java的数组类型对象是可以支持协变的（因为Java1.0的初期版本并没有泛型，但又需要考虑到兼容，于是就有了这个“支持”），但这种协变会带来另一个问题：编译时期没有问题，但是在运行时，就会出现类型异常的错误**
 
-![Java数组默认支持协变](assets/变型分类-Java数组默认支持协变.png)
+![Java数组默认支持协变](../generics/variant/assets/变型分类-Java数组默认支持协变.png)
 
 支持的同时，也会带来相应的安全隐患。
 
-![Java数组默认支持协变-安全隐患](assets/变型分类-Java数组默认支持协变-安全隐患.png)
+![Java数组默认支持协变-安全隐患](../generics/variant/assets/变型分类-Java数组默认支持协变-安全隐患.png)
 
 ### 2.泛型协变与上边界
 
 接下来，我们看下日常开发中的一个常见场景。因为集合默认不支持协变，导致后续逻辑无法继续下去。
 
-![协变上界-Java集合默认不支持协变](assets/协变上界-Java集合默认不支持协变.png?t=1708581037595)
+![协变上界-Java集合默认不支持协变](../generics/variant/assets/协变上界-Java集合默认不支持协变.png?t=1708581037595)
 
 这种统一处理父类对象，然后传入子类对象的方式，在开发中还是比较常见的。
 
@@ -66,14 +66,14 @@ https://www.bilibili.com/video/BV18d4y1m75K/?spm_id_from=333.788&vd_source=23114
 
 使用通配符“?”+extend关键字即可。这样，就能让泛型支持协变了。
 
-![extends关键字支持协变](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变.png)
+![extends关键字支持协变](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变.png)
 
 此处的通配符+extends，就指明了该方法的参数的是继承自Animal，说明只能入参是Animal本类或者其子类，才能正常地通过编译。
 
 **此处的‘泛型协变’虽然解决了传入方法集合参数子类的问题。同前面所述的数组类似，它仍然存在着一定的安全隐患：因为支持协变，所以可以在编译期赋予其他类型的元素，可能会在运行时则会报错：因为‘其他类型’不在指定的元素类型中。**
 
 出于安全的考虑，“泛型协变”将**拒绝插入类的操作（除了插入无效值null外），只允许读取类的操作存在**。
-![支持协变-读写限制](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-读写限制.png)
+![支持协变-读写限制](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-读写限制.png)
 
 至此，“泛型协变”的好处和产生原因也就解释清楚了。既然协变支持的是方法定义参数为父类，实际传入参数为子类。
 
@@ -83,23 +83,23 @@ https://www.bilibili.com/video/BV18d4y1m75K/?spm_id_from=333.788&vd_source=23114
 
 考虑到这种场景也是开发中比较常见的。泛型自然也是有相应的支持方法，那就是“泛型的逆变”。逆者，以小博大也。
 
-![支持协变-逆变引入1](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入1.png)
+![支持协变-逆变引入1](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入1.png)
 
 在此基础上扩展，允许传入父类参数。此时，就需要使用？+super关键字，来限定入参的下界。
 
-![支持协变-逆变引入2](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入2.png)
+![支持协变-逆变引入2](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入2.png)
 
 通过这样的设定后，就允许传入的参数是Dog类的父类了。
 
 泛型逆变还支持添加super后对象的本类及其子类。但不能添加其他的元素类型。
 
-![支持协变-逆变引入3](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入3.png)
+![支持协变-逆变引入3](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入3.png)
 
 同样的，泛型逆变也有一定的取舍在里面。由于它接收到的参数是Dog的父类，但并不知道这个‘父类’到底是个什么对象。
 
 所以，在做对象读取的时候，只能以object来接收。
 
-![支持协变-逆变引入4](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入4.png)
+![支持协变-逆变引入4](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入4.png)
 
 综合来看，泛型逆变**支持写入，但不支持读取**。
 
@@ -107,24 +107,24 @@ https://www.bilibili.com/video/BV18d4y1m75K/?spm_id_from=333.788&vd_source=23114
 
 自然是结合你的需求来，按需选择泛型的逆变和协变嘛，如果都不需要，那就指定到确定的类型即可。
 
-![支持协变-逆变引入5](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入5.png)
+![支持协变-逆变引入5](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-逆变引入5.png)
 
 用一张图来作“泛型的协变和逆变关系”的补充说明。
 
-![泛型协变和逆变关系的图示](assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-泛型协变和逆变关系的图示.png)
+![泛型协变和逆变关系的图示](../generics/variant/assets/协变上界-Java集合默认不支持协变-extends关键字支持协变-泛型协变和逆变关系的图示.png)
 
 ### 4.泛型的桥接方法
 
-![泛型-桥接方法引入1](assets/泛型-桥接方法引入1.png)
+![泛型-桥接方法引入1](../generics/variant/assets/泛型-桥接方法引入1.png)
 
-![泛型-桥接方法引入2](assets/泛型-桥接方法引入2.png)
+![泛型-桥接方法引入2](../generics/variant/assets/泛型-桥接方法引入2.png)
 **纠正下，此处的擦除，正确的表述应为：擦除后，如果存在上界（即由extends关键字），则擦除为上界的基本类型。如果没有，或者说存在下界，则擦除为Object。**
 
-![泛型-桥接方法引入3](assets/泛型-桥接方法引入3.png)
+![泛型-桥接方法引入3](../generics/variant/assets/泛型-桥接方法引入3.png)
 
-![泛型-桥接方法引入4](assets/泛型-桥接方法引入4.png)
+![泛型-桥接方法引入4](../generics/variant/assets/泛型-桥接方法引入4.png)
 
-![泛型-桥接方法引入5](assets/泛型-桥接方法引入5.png)
+![泛型-桥接方法引入5](../generics/variant/assets/泛型-桥接方法引入5.png)
 
 ### 5.泛型总结
 
