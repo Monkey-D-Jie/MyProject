@@ -29,5 +29,12 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>
         </dependency>
+
+<!--        CGlib-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
 </project>
