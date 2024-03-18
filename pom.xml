@@ -28,6 +28,7 @@
         <module>spring-cloud-nacos</module>
         <module>spring-cloud-seata</module>
         <module>java-base-review</module>
+        <module>redis</module>
     </modules>
 
 
