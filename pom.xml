@@ -29,6 +29,7 @@
         <module>spring-cloud-seata</module>
         <module>java-base-review</module>
         <module>redis</module>
+        <module>design-patterns/template-pattern</module>
     </modules>
 
 
