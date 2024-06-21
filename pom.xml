@@ -30,6 +30,7 @@
         <module>java-base-review</module>
         <module>redis</module>
         <module>design-patterns/template-pattern</module>
+        <module>design-patterns/factoty-pattern</module>
     </modules>
 
 
